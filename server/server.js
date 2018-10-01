@@ -28,6 +28,19 @@ app.get('/todos', (req, res) => {
     res.status(400).send(e);
   });
 });
+
+// route to post users into db.
+app.post('/users', (req, res) => {
+  let user = new User({
+    email: req.body.email
+  });
+  user.save().then((data) => {
+    res.send(data);
+  }, (e) => {
+    res.status(400).send(e);
+  });
+})
+//
 //express server listening on port 3000
 app.listen(3000, () => {
     console.log('Started on port 3000');
